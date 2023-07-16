@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\Helpers\" />
+    <Folder Include="Commons\Attributes\" />
+    <Folder Include="Commons\Security\" />
+    <Folder Include="Commons\Validations\" />
+    <Folder Include="Interfeces\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Burgerber.DataAccess\Burgerber.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>
