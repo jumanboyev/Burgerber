@@ -1,0 +1,111 @@
+Create Table categories(
+	id bigint generated always as identity primary key,
+	name varchar(50) not null,
+	description text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table products(
+	id bigint generated always as identity primary key,
+	category_id bigint references categories (id),
+	unit_price double precision,
+	name varchar(50) not null,
+	image_path text not null,
+	description text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table discounts	(
+	id bigint generated always as identity primary key,
+	name varchar(50) not null,
+	percentage integer not null,
+	description text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table product_discounts(
+	id bigint generated always as identity primary key,
+	product_id bigint references products (id),
+	discount_id bigint references discounts (id),
+	start_date timestamp without time zone default now(),
+	end_date timestamp without time zone default now(),
+	description text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table clients(
+	id bigint generated always as identity primary key,
+	first_name varchar(50) not null,
+	last_name varchar(50) not null,
+	phone_number varchar(13) not null,
+	phone_number_confirmed varchar(13) not null,
+	password_hash text,
+	salt text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now(),
+	birthdate timestamp without time zone default now()
+);
+
+Create Table delivers(
+	id bigint generated always as identity primary key,
+	first_name varchar(50) not null,
+	last_name varchar(50) not null,
+	phone_number varchar(13) not null,
+	phone_number_confirmed varchar(13) not null,
+	email text,
+	birthdate timestamp without time zone default now(),
+	password_hash text,
+	salt text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table admin(
+	id bigint generated always as identity primary key,
+	first_name varchar(50) not null,
+	last_name varchar(50) not null,
+	phone_number varchar(13) not null,
+	phone_number_confirmed varchar(13) not null,
+	email text,
+	birthdate timestamp without time zone default now(),
+	password_hash text,
+	salt text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table orders(
+	id bigint generated always as identity primary key,
+	deliver_id bigint references delivers (id),
+	client_id bigint references clients(id),
+	product_price double precision not null,-- summ all items of order_details->result_sum
+	deliver_price double precision not null,
+	total_price double precision not null, --product_price + deliver_price
+	latitude double precision not null,
+	longitude double precision not null,
+	is_contracted boolean,
+	payment_type text,
+	is_paid boolean,
+	description text,
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+Create Table order_details(
+	id bigint generated always as identity primary key,
+	product_id bigint references products (id),
+	order_id bigint references orders (id),
+	quantity integer not null,
+	total_price double precision not null,--product_price*quantity
+	discount_price double precision not null,--discount->start_date and enddate	
+	result_price  double precision not null, --total_price-discount_price
+	create_at timestamp without time zone default now(),
+	update_at timestamp without time zone default now()
+);
+
+
+
