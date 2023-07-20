@@ -7,17 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commons\Helpers\" />
     <Folder Include="Commons\Attributes\" />
     <Folder Include="Commons\Security\" />
-    <Folder Include="Commons\Validations\" />
-    <Folder Include="Interfeces\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.143" />
+    <PackageReference Include="FluentValidation" Version="11.6.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Burgerber.DataAccess\Burgerber.DataAccess.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 </Project>
