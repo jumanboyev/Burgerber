@@ -1,6 +1,10 @@
 using Burgerber.DataAccess.Interfaces.Categories;
+using Burgerber.DataAccess.Interfaces.Clients;
 using Burgerber.DataAccess.Repositories.Categories;
+using Burgerber.DataAccess.Repositories.Clients;
+using Burgerber.Service.Interfeces.Auth;
 using Burgerber.Service.Interfeces.Categories;
+using Burgerber.Service.Services.Auth;
 using Burgerber.Service.Services.Categories;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,10 +15,15 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddMemoryCache();
 
 //->
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
+
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();
 

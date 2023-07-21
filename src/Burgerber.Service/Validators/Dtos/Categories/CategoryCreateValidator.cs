@@ -1,9 +1,9 @@
 ﻿using Burgerber.Service.Dtos.Categories;
 using FluentValidation;
 
-namespace Burgerber.Service.Validators.Dtos;
+namespace Burgerber.Service.Validators.Dtos.Categories;
 
-public class CategoryCreateValidator:AbstractValidator<CategoryCreateDto>
+public class CategoryCreateValidator : AbstractValidator<CategoryCreateDto>
 {
     public CategoryCreateValidator()
     {
@@ -11,7 +11,7 @@ public class CategoryCreateValidator:AbstractValidator<CategoryCreateDto>
                                 .MaximumLength(50).WithMessage("Maxsimum ism uzunligi 50 dan oshmasligi kerak")
                                 .MinimumLength(3).WithMessage("Minimum ism uzunligi 3 dan kam bo'lmasligi kerak");
 
-        RuleFor(dto=> dto.Description).NotNull().NotEmpty().WithMessage("Description bo'sh va Null bo'lishi mumkin emas")
+        RuleFor(dto => dto.Description).NotNull().NotEmpty().WithMessage("Description bo'sh va Null bo'lishi mumkin emas")
                                 .MinimumLength(15).WithMessage("Minimum description uzunligi 15 dan kam bo'lmasligi kerak");
     }
 }
