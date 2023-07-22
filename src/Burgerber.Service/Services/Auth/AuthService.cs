@@ -1,7 +1,10 @@
 ﻿using Burgerber.DataAccess.Interfaces.Clients;
 using Burgerber.Domain.Exseptions.Clients;
+using Burgerber.Service.Commons.Helpers.TimeHelper;
 using Burgerber.Service.Dtos.Auth;
+using Burgerber.Service.Dtos.Security;
 using Burgerber.Service.Interfeces.Auth;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -40,9 +43,23 @@ public class AuthService : IAuthService
 
     }
 
-    public Task<(bool Result, int CashedVerificationMinutes)> SendCodeRegisterAsync(string phone)
+    public async Task<(bool Result, int CashedVerificationMinutes)> SendCodeRegisterAsync(string phone)
     {
-        throw new NotImplementedException();
+        if (_memoryCache.TryGetValue(phone, out RegisterDto registerDto))
+        {
+            VerificationDto verificationDto = new VerificationDto();
+            verificationDto.Attempt = 0;
+            verificationDto.CretaeAt = TimeHelper.GetDateTime();
+            //make confirm code as random
+            verificationDto.Code = 22222;
+
+            //sms sender::begin
+            //sms sender::end
+
+            _memoryCache.Set(phone, verificationDto, TimeSpan.FromMinutes(CACHED_MINUTES_FOR_VERIFICATION));
+            return (Result: true, CashedVerificationMinutes:CACHED_MINUTES_FOR_VERIFICATION);        
+        }
+        else throw new ClientCacheDataExpiredExseption();
     }
 
     public Task<(bool Result, string Token)> VerifyRegisterAsync(string phone, string code)
