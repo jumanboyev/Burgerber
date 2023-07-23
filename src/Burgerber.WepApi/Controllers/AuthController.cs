@@ -40,4 +40,6 @@ public class AuthController : ControllerBase
         var serviceResult=await _authService.SendCodeRegisterAsync(phone);
         return Ok(new {serviceResult.Result,serviceResult.CashedVerificationMinutes});
     }
+
+
 }
