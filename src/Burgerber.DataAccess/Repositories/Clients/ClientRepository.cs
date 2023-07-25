@@ -34,7 +34,7 @@ public class ClientRepository :BaseRepository, IClientRepository
         {
             await _connection.OpenAsync();
             string query= "INSERT INTO public.clients(first_name, last_name, phone_number, phone_number_confirmed, password_hash, salt, create_at, update_at, birthdate) " +
-                "VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PasswordHash, @Salt, CreateAt, @UpdateAt, @Birthdate);";
+                "VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PasswordHash, @Salt, @CreateAt, @UpdateAt, @Birthdate);";
 
             var result=await _connection.ExecuteAsync(query,entity);
             return result;

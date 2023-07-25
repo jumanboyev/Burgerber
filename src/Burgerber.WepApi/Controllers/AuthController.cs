@@ -41,5 +41,22 @@ public class AuthController : ControllerBase
         return Ok(new {serviceResult.Result,serviceResult.CashedVerificationMinutes});
     }
 
+    [HttpPost("register/verify")]
+    public async Task<IActionResult> VerifyRegisterAsync([FromBody] VerifyRegisterDto verifyRegisterDto)
+    {
+        var serviceResult = await _authService.VerifyRegisterAsync(verifyRegisterDto.PhoneNumber, verifyRegisterDto.Code);
+        return Ok(new { serviceResult.Result,serviceResult.Token });
+    }
 
+    [HttpPost("login")]
+    public async Task<IActionResult> LoginAsync([FromBody] LoginDto loginDto)
+     {
+        var validator=new LoginValidator();
+        var varResult=validator.Validate(loginDto);
+
+        if(varResult.IsValid == false) return BadRequest(varResult.Errors);
+
+        var serviceResult=await _authService.LoginAsync(loginDto);
+        return Ok(new { serviceResult.Result, serviceResult.Token });
+    }
 }

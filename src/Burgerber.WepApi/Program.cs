@@ -26,6 +26,7 @@ builder.Services.AddScoped<IClientRepository, ClientRepository>();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ITokenService , TokenService>();
 
 builder.Services.AddSingleton<ISmsSender, SmsSender > ();
 
