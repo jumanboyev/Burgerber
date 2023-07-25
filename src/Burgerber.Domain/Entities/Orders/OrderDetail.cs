@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.Domain.Entities.Orders;
 
-public class OrderDetail:Auditable
+public class OrderDetail : Auditable
 {
     public long ProductId { get; set; }
     public long OrderId { get; set; }

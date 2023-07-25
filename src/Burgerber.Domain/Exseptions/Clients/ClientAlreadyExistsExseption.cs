@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Burgerber.Domain.Exseptions.Clients;
 
-namespace Burgerber.Domain.Exseptions.Clients;
-
-public class ClientAlreadyExistsExseption:AlreadyExistsExseption
+public class ClientAlreadyExistsExseption : AlreadyExistsExseption
 {
     public ClientAlreadyExistsExseption()
     {

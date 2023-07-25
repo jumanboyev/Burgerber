@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.Domain.Entities.Orders;
 
-public class Order:Auditable
+public class Order : Auditable
 {
     public long ClientId { get; set; }
     public long DeliverId { get; set; }
@@ -15,10 +15,10 @@ public class Order:Auditable
     public double Totalprice { get; set; }
 
     public double Latitude { get; set; }
-    
+
     public double Longitude { get; set; }
 
-    public string Payment { set; get; }=string.Empty;
+    public string Payment { set; get; } = string.Empty;
 
     public bool isContaracted { get; set; }
 

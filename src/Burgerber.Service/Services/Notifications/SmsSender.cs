@@ -3,8 +3,6 @@ using Burgerber.Service.Interfeces.Notifications;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System.Net;
-using System.Net.Http.Headers;
-using System.Text.Json.Serialization;
 
 namespace Burgerber.Service.Services.Notifications;
 
@@ -15,7 +13,7 @@ public class SmsSender : ISmsSender
     private readonly string SENDER = "";
     private readonly string EMAIL = "";
     private readonly string PASSWORD = "";
-    private  string TOKEN = "";
+    private string TOKEN = "";
 
     public SmsSender(IConfiguration config)
     {
@@ -38,9 +36,9 @@ public class SmsSender : ISmsSender
         var response = await client.SendAsync(request);
         if (response.IsSuccessStatusCode)
         {
-            string json= await response.Content.ReadAsStringAsync();
-            EskizLoginDto dto =JsonConvert.DeserializeObject<EskizLoginDto>(json)!;
-            TOKEN=dto.Data.Token;
+            string json = await response.Content.ReadAsStringAsync();
+            EskizLoginDto dto = JsonConvert.DeserializeObject<EskizLoginDto>(json)!;
+            TOKEN = dto.Data.Token;
         }
     }
 
@@ -76,11 +74,11 @@ public class SmsSender : ISmsSender
 
         public EskizLoginDto()
         {
-            Data= new EskizToken();
+            Data = new EskizToken();
         }
 
     }
-    
+
     public class EskizToken
     {
         public string Token { get; set; } = string.Empty;

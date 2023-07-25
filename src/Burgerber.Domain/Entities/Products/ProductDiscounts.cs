@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.Domain.Entities.Products;
 
-public class ProductDiscounts:Auditable
+public class ProductDiscounts : Auditable
 {
     public long ProductId { get; set; }
 
@@ -10,5 +10,5 @@ public class ProductDiscounts:Auditable
 
     public DateTime EndDate { get; set; }
 
-    public string Description { get; set; }=string.Empty;
+    public string Description { get; set; } = string.Empty;
 }

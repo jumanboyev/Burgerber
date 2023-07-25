@@ -6,7 +6,7 @@ using Dapper;
 
 namespace Burgerber.DataAccess.Repositories.Clients;
 
-public class ClientRepository :BaseRepository, IClientRepository
+public class ClientRepository : BaseRepository, IClientRepository
 {
     public async Task<long> CountAsync()
     {
@@ -18,7 +18,7 @@ public class ClientRepository :BaseRepository, IClientRepository
             var result = await _connection.QuerySingleAsync<long>(query);
             return result;
         }
-        catch 
+        catch
         {
             return 0;
         }
@@ -33,20 +33,20 @@ public class ClientRepository :BaseRepository, IClientRepository
         try
         {
             await _connection.OpenAsync();
-            string query= "INSERT INTO public.clients(first_name, last_name, phone_number, phone_number_confirmed, password_hash, salt, create_at, update_at, birthdate) " +
+            string query = "INSERT INTO public.clients(first_name, last_name, phone_number, phone_number_confirmed, password_hash, salt, create_at, update_at, birthdate) " +
                 "VALUES (@FirstName, @LastName, @PhoneNumber, @PhoneNumberConfirmed, @PasswordHash, @Salt, @CreateAt, @UpdateAt, @Birthdate);";
 
-            var result=await _connection.ExecuteAsync(query,entity);
+            var result = await _connection.ExecuteAsync(query, entity);
             return result;
         }
-        catch 
+        catch
         {
 
             return 0;
         }
         finally
         {
-            await  _connection.CloseAsync();
+            await _connection.CloseAsync();
         }
     }
 
@@ -89,13 +89,13 @@ public class ClientRepository :BaseRepository, IClientRepository
             var data = await _connection.QuerySingleAsync<Client>(query, new { PhoneNumber = phone });
             return data;
         }
-        catch 
+        catch
         {
             return null;
         }
         finally
         {
-            await _connection.CloseAsync() ;
+            await _connection.CloseAsync();
         }
     }
 

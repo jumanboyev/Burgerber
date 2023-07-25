@@ -2,7 +2,7 @@
 
 namespace Burgerber.Domain.Entities.Admin;
 
-public class Admin:Human
+public class Admin : Human
 {
     [MaxLength(13)]
     public string PhoneNumber { get; set; } = string.Empty;

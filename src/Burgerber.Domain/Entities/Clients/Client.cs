@@ -2,7 +2,7 @@
 
 namespace Burgerber.Domain.Entities.Clients;
 
-public class Client:Human
+public class Client : Human
 {
     [MaxLength(13)]
     public string PhoneNumber { get; set; } = string.Empty;

@@ -1,6 +1,5 @@
 ﻿using Burgerber.Service.Dtos.Notifications;
 using Burgerber.Service.Interfeces.Notifications;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Burgerber.WepApi.Controllers
@@ -13,7 +12,7 @@ namespace Burgerber.WepApi.Controllers
 
         public SmsController(ISmsSender smsSender)
         {
-            this._smsSender=smsSender;
+            this._smsSender = smsSender;
         }
 
         [HttpPost]

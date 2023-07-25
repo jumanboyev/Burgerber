@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.Domain.Exseptions.Clients;
 
-public class ClientCacheDataExpiredExseption:ExpiredExseption
+public class ClientCacheDataExpiredExseption : ExpiredExseption
 {
     public ClientCacheDataExpiredExseption()
     {

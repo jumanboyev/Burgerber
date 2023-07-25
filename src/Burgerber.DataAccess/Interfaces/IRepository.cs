@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.DataAccess.Interfaces;
 
-public interface IRepository<TEntity,TViewModel>
+public interface IRepository<TEntity, TViewModel>
 {
     public Task<int> CreateAsync(TEntity entity);
 
@@ -10,5 +10,5 @@ public interface IRepository<TEntity,TViewModel>
 
     public Task<TViewModel> GetByIdAsync(long id);
 
-    public Task<long> CountAsync(); 
+    public Task<long> CountAsync();
 }

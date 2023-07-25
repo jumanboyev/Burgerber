@@ -2,7 +2,7 @@
 
 namespace Burgerber.Domain.Exseptions;
 
-public class BadRequestExseption: Exception
+public class BadRequestExseption : Exception
 {
     public HttpStatusCode StatusCode { get; } = HttpStatusCode.BadRequest;
 

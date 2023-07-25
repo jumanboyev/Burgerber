@@ -2,7 +2,6 @@
 using Burgerber.Service.Interfeces.Auth;
 using Burgerber.Service.Validators.Dtos;
 using Burgerber.Service.Validators.Dtos.Auth;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Burgerber.WepApi.Controllers;
@@ -21,12 +20,12 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterDto registerDto)
     {
-        var validator= new RegisterValidator();
-        var result=validator.Validate(registerDto);
+        var validator = new RegisterValidator();
+        var result = validator.Validate(registerDto);
         if (result.IsValid)
         {
-           var serciceResult = await _authService.RegisterAsync(registerDto);
-            return Ok(new {serciceResult.Result,serciceResult.CachedMinutes});
+            var serciceResult = await _authService.RegisterAsync(registerDto);
+            return Ok(new { serciceResult.Result, serciceResult.CachedMinutes });
         }
         else return BadRequest(result.Errors);
     }
@@ -34,29 +33,29 @@ public class AuthController : ControllerBase
     [HttpPost("register/send-code")]
     public async Task<IActionResult> SendCodeRegisterAsync(string phone)
     {
-        var result=PhoneNumberValidator.isValid(phone);
+        var result = PhoneNumberValidator.isValid(phone);
         if (result == false) return BadRequest("Telefon raqam Yaroqsiz");
 
-        var serviceResult=await _authService.SendCodeRegisterAsync(phone);
-        return Ok(new {serviceResult.Result,serviceResult.CashedVerificationMinutes});
+        var serviceResult = await _authService.SendCodeRegisterAsync(phone);
+        return Ok(new { serviceResult.Result, serviceResult.CashedVerificationMinutes });
     }
 
     [HttpPost("register/verify")]
     public async Task<IActionResult> VerifyRegisterAsync([FromBody] VerifyRegisterDto verifyRegisterDto)
     {
         var serviceResult = await _authService.VerifyRegisterAsync(verifyRegisterDto.PhoneNumber, verifyRegisterDto.Code);
-        return Ok(new { serviceResult.Result,serviceResult.Token });
+        return Ok(new { serviceResult.Result, serviceResult.Token });
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync([FromBody] LoginDto loginDto)
-     {
-        var validator=new LoginValidator();
-        var varResult=validator.Validate(loginDto);
+    {
+        var validator = new LoginValidator();
+        var varResult = validator.Validate(loginDto);
 
-        if(varResult.IsValid == false) return BadRequest(varResult.Errors);
+        if (varResult.IsValid == false) return BadRequest(varResult.Errors);
 
-        var serviceResult=await _authService.LoginAsync(loginDto);
+        var serviceResult = await _authService.LoginAsync(loginDto);
         return Ok(new { serviceResult.Result, serviceResult.Token });
     }
 }

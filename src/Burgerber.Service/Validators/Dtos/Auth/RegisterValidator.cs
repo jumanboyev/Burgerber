@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Burgerber.Service.Validators.Dtos.Auth;
 
-public class RegisterValidator:AbstractValidator<RegisterDto>
+public class RegisterValidator : AbstractValidator<RegisterDto>
 {
     public RegisterValidator()
     {
@@ -17,6 +17,6 @@ public class RegisterValidator:AbstractValidator<RegisterDto>
 
         RuleFor(dto => dto.Password).Must(password => PasswordValidator.isStrongPassword(password).isValid)
             .WithMessage("Password kuchli bo'lishi shart");
-            
+
     }
 }

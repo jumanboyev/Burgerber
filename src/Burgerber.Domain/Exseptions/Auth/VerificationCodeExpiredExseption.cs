@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Burgerber.Domain.Exseptions.Auth;
 
-namespace Burgerber.Domain.Exseptions.Auth;
-
-public class VerificationCodeExpiredExseption:ExpiredExseption
+public class VerificationCodeExpiredExseption : ExpiredExseption
 {
     public VerificationCodeExpiredExseption()
     {

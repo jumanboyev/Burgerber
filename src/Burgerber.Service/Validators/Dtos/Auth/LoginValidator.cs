@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Burgerber.Service.Validators.Dtos.Auth;
 
-public class LoginValidator:AbstractValidator<LoginDto>
+public class LoginValidator : AbstractValidator<LoginDto>
 {
     public LoginValidator()
     {

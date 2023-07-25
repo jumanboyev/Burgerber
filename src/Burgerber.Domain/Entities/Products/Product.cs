@@ -2,7 +2,7 @@
 
 namespace Burgerber.Domain.Entities.Products;
 
-public class Product:Auditable
+public class Product : Auditable
 {
     public long CategoryId { get; set; }
 
@@ -14,7 +14,7 @@ public class Product:Auditable
     public double UnitPrice { get; set; }
 
     public string Description { get; set; } = string.Empty;
-    
+
 
 
 }

@@ -27,14 +27,14 @@ public class AuthService : IAuthService
 
 
     public AuthService(IMemoryCache memoryCache,
-        IClientRepository clientRepository, 
+        IClientRepository clientRepository,
         ISmsSender smsSender,
         ITokenService tokenService)
     {
         this._memoryCache = memoryCache;
         this._clientRepository = clientRepository;
         this._smsSender = smsSender;
-        this._tokenService=tokenService;
+        this._tokenService = tokenService;
     }
     public async Task<(bool Result, int CachedMinutes)> RegisterAsync(RegisterDto dto)
     {
@@ -95,11 +95,11 @@ public class AuthService : IAuthService
                 else if (verificationDto.Code == code)
                 {
                     var dbResult = await RegisterToDatabase(registerDto);
-                    if(dbResult is true)
+                    if (dbResult is true)
                     {
                         var client = await _clientRepository.GetByPhoneAsync(phone);
                         string token = await _tokenService.GenerateToken(client);
-                        return (Result: true,Token: token);
+                        return (Result: true, Token: token);
 
                     }
                     else return (Result: false, Token: "");
@@ -142,11 +142,11 @@ public class AuthService : IAuthService
         var client = await _clientRepository.GetByPhoneAsync(loginDto.PhoneNumber);
         if (client is null) throw new ClientsNotFoundExseption();
 
-        var hasherResult=PasswordHasher.Verify(loginDto.Password, client.PasswordHash, client.Salt);
-        if(hasherResult==false) throw new PasswordNotMatchExseption();
+        var hasherResult = PasswordHasher.Verify(loginDto.Password, client.PasswordHash, client.Salt);
+        if (hasherResult == false) throw new PasswordNotMatchExseption();
 
-        var token =await _tokenService.GenerateToken(client);
-        return (Result:true,Token:token);
+        var token = await _tokenService.GenerateToken(client);
+        return (Result: true, Token: token);
 
     }
 }

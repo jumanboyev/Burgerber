@@ -2,7 +2,7 @@
 
 namespace Burgerber.Domain.Entities
 {
-    public class Human:Auditable
+    public class Human : Auditable
     {
         [MaxLength(50)]
         public string FirstName { get; set; } = string.Empty;

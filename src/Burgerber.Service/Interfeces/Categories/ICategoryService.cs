@@ -10,12 +10,12 @@ namespace Burgerber.Service.Interfeces.Categories
 
         public Task<bool> DeleteAsync(long categoryId);
 
-        public Task<IList<Category>> GetAllAsync( PaginationParams @params);
+        public Task<IList<Category>> GetAllAsync(PaginationParams @params);
 
         public Task<Category> GetByIdAsync(long categoryId);
 
         public Task<bool> UpdateAsync(long categoryId, CategoryUpdateDto dto);
- 
+
         public Task<long> CountAsync();
 
     }

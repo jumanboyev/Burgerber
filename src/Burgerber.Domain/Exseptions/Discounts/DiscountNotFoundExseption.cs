@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.Domain.Exseptions.Discounts;
 
-public class DiscountNotFoundExseption:NotFoundExseption
+public class DiscountNotFoundExseption : NotFoundExseption
 {
     public DiscountNotFoundExseption()
     {

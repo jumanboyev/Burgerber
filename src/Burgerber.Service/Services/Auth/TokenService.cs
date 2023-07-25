@@ -15,7 +15,7 @@ public class TokenService : ITokenService
 
     public TokenService(IConfiguration configuration)
     {
-        this._config= configuration.GetSection("Jwt");
+        this._config = configuration.GetSection("Jwt");
     }
     public async Task<string> GenerateToken(Client client)
     {
@@ -35,7 +35,7 @@ public class TokenService : ITokenService
             issuer: _config["Issure"],
             audience: _config["Audience"],
             claims: identityclaims,
-            expires:TimeHelper.GetDateTime().AddHours(expiresHours),
+            expires: TimeHelper.GetDateTime().AddHours(expiresHours),
             signingCredentials: keyCredentials);
 
         return new JwtSecurityTokenHandler().WriteToken(token);

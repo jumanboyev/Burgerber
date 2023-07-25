@@ -9,6 +9,7 @@
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.143" />
     <PackageReference Include="FluentValidation" Version="11.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.9" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
@@ -16,7 +17,6 @@
   <ItemGroup>
     <Folder Include="Middlewares\" />
     <Folder Include="Filters\" />
-    <Folder Include="Configurations\" />
     <Folder Include="wwwroot\media\" />
     <Folder Include="wwwroot\audios\" />
     <Folder Include="wwwroot\documents\" />

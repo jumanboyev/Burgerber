@@ -2,7 +2,7 @@
 
 namespace Burgerber.Domain.Exseptions;
 
-public class AlreadyExistsExseption:Exception
+public class AlreadyExistsExseption : Exception
 {
     public HttpStatusCode StatusCode { get; } = HttpStatusCode.NotFound;
 

@@ -1,6 +1,6 @@
 ﻿namespace Burgerber.Domain.Exseptions.Auth
 {
-    public class PasswordNotMatchExseption:BadRequestExseption
+    public class PasswordNotMatchExseption : BadRequestExseption
     {
         public PasswordNotMatchExseption()
         {

@@ -64,10 +64,10 @@ public class CategoryService : ICategoryService
     {
         var res = await _repository.GetByIdAsync(categoryId);
         if (res is null) throw new CategoryNotFoundExseption();
-        
-        res.Name=dto.Name;
-        res.Description=dto.Description;
-        res.UpdateAt= TimeHelper.GetDateTime();
+
+        res.Name = dto.Name;
+        res.Description = dto.Description;
+        res.UpdateAt = TimeHelper.GetDateTime();
 
         var result = await _repository.UpdateAsync(categoryId, res);
         return result > 0;
