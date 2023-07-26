@@ -9,6 +9,7 @@ using Burgerber.Service.Services.Auth;
 using Burgerber.Service.Services.Categories;
 using Burgerber.Service.Services.Notifications;
 using Burgerber.WepApi.Configurations;
+using Burgerber.WepApi.Configurations.Layers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,17 +21,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
-
-//->
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<IClientRepository, ClientRepository>();
-
-builder.Services.AddScoped<ICategoryService, CategoryService>();
-builder.Services.AddScoped<IAuthService, AuthService>();
-builder.Services.AddScoped<ITokenService, TokenService>();
-
-builder.Services.AddSingleton<ISmsSender, SmsSender>();
 builder.ConfigureJwtAuth();
+builder.ConfigureServiceLayer();
+builder.ConfidureDataAccess();
 
 var app = builder.Build();
 
