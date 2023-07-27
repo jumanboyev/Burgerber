@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Burgerber.DataAccess.Common.Interfaces;
+using Burgerber.DataAccess.ViewModels.Products;
+using Burgerber.Domain.Entities.Products;
 
-namespace Burgerber.DataAccess.Interfaces.Products
+namespace Burgerber.DataAccess.Interfaces.Products;
+
+public interface IProductRepository:IRepository<Product,Product>,IGetAll<Product>,
+    ISearchable<ProductViewModel>
 {
-    internal interface IProductRepository
-    {
-    }
+
 }

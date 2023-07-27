@@ -17,9 +17,9 @@
   <ItemGroup>
     <Folder Include="Middlewares\" />
     <Folder Include="Filters\" />
-    <Folder Include="wwwroot\media\" />
     <Folder Include="wwwroot\audios\" />
     <Folder Include="wwwroot\documents\" />
+    <Folder Include="wwwroot\media\IMAGES\" />
     <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 

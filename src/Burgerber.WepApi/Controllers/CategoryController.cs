@@ -1,5 +1,6 @@
 ﻿using Burgerber.DataAccess.Utils;
 using Burgerber.Service.Dtos.Categories;
+using Burgerber.Service.Dtos.Products;
 using Burgerber.Service.Interfeces.Categories;
 using Burgerber.Service.Validators.Dtos.Categories;
 using Microsoft.AspNetCore.Authorization;
@@ -52,7 +53,9 @@ namespace Burgerber.WepApi.Controllers
 
         [HttpGet("count")]
         [AllowAnonymous]
-        public async Task<IActionResult> Countasync()
+        public async Task<IActionResult> CountAsync()
             => Ok(await _service.CountAsync());
+
+        
     }
 }
