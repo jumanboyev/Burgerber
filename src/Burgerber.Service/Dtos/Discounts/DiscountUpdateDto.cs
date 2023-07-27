@@ -1,9 +1,8 @@
-﻿namespace Burgerber.Domain.Entities.Discounts;
+﻿namespace Burgerber.Service.Dtos.Discounts;
 
-public class Discount : Auditable
+public class DiscountUpdateDto
 {
     public string Name { get; set; } = string.Empty;
 
     public string Description { get; set; } = string.Empty;
-
 }

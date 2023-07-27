@@ -24,6 +24,7 @@ builder.Services.AddMemoryCache();
 builder.ConfigureJwtAuth();
 builder.ConfigureServiceLayer();
 builder.ConfidureDataAccess();
+builder.ConfigureCORSPolicy();
 
 var app = builder.Build();
 
