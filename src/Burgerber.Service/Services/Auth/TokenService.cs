@@ -27,10 +27,10 @@ public class TokenService : ITokenService
             new Claim(ClaimTypes.MobilePhone,client.PhoneNumber)
         };
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["SecurityKey"]!));
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("ea6fdb8a - 2196 - 4bb0 - 8a6a - 388f39d0f1d4"));
         var keyCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-        int expiresHours = int.Parse(_config["LifeTime"]!);
+        int expiresHours = 24;
         var token = new JwtSecurityToken(
             issuer: _config["Issure"],
             audience: _config["Audience"],

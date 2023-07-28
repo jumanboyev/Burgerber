@@ -69,14 +69,44 @@ public class ClientRepository : BaseRepository, IClientRepository
         }
     }
 
-    public Task<IList<ClientViewModel>> GetAllAsync(PaginationParams @params)
+    public async Task<IList<Client>> GetAllAsync(PaginationParams @params)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = "SELECT * FROM public.clients ORDER BY id DESC " +
+                $"OFFSET {@params.SkipCount} LIMIT {@params.PageSize}";
+            var result = (await _connection.QueryAsync<Client>(query)).ToList();
+            return result;
+        }
+        catch
+        {
+            IList<Client> result = new List<Client>();
+            return result;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
-    public Task<ClientViewModel> GetByIdAsync(long id)
+    public async Task<Client?> GetByIdAsync(long id)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await _connection.OpenAsync();
+            string query = $"select * FROM public.clients where id = {id}";
+            var data = await _connection.QuerySingleAsync<Client>(query, new { Id = id });
+            return data;
+        }
+        catch
+        {
+            return null;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 
     public async Task<Client?> GetByPhoneAsync(string phone)
@@ -99,13 +129,27 @@ public class ClientRepository : BaseRepository, IClientRepository
         }
     }
 
-    public Task<(int ItemsCount, List<ClientViewModel>)> SearchableAsync(string query, PaginationParams @params)
-    {
-        throw new NotImplementedException();
-    }
+   
 
-    public Task<int> UpdateAsync(long id, Client entity)
+    public async Task<int> UpdateAsync(long id, Client entity)
     {
-        throw new NotImplementedException();
+        try
+        { 
+            await _connection.OpenAsync();
+            string query = "UPDATE public.clients SET  first_name=@FirstName, last_name=@LastName, phone_number=@PhoneNumber, " +
+                "phone_number_confirmed=@PhoneNumberConfirmed, password_hash=@PasswordHash, salt=@Salt," +
+                " create_at=@CreateAt, update_at=@UpdateAt, birthdate=@Birthdate" +
+                 $" WHERE id = {id};";
+            var result = await _connection.ExecuteAsync(query, entity);
+            return result;
+        }
+        catch
+        {
+            return 0;
+        }
+        finally
+        {
+            await _connection.CloseAsync();
+        }
     }
 }

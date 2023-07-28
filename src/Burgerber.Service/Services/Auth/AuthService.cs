@@ -61,7 +61,9 @@ public class AuthService : IAuthService
             verificationDto.Attempt = 0;
             verificationDto.CretaeAt = TimeHelper.GetDateTime();
             //make confirm code as random
-            verificationDto.Code = 22222;
+            Random random = new Random();
+            int i = random.Next(10000, 99999);
+            verificationDto.Code = i;
 
             if (_memoryCache.TryGetValue("verification_register_" + phone, out VerificationDto oldverificationDto))
             {
@@ -72,8 +74,8 @@ public class AuthService : IAuthService
 
             SmsMessange smsMessange = new SmsMessange();
             smsMessange.Recipent = phone.Substring(1);
-            smsMessange.Content = "Sizning tastiqlash ko'dingiz" + verificationDto.Code;
-            smsMessange.Title = "Burgerber";
+            smsMessange.Content = "Sizning tastiqlash ko'dingiz: " + verificationDto.Code;
+            smsMessange.Title = "Burgerber\n";
 
             var smsResult = await _smsSender.SendAsync(smsMessange);
             if (smsResult is true) return (Result: true, CachedVerificationMinutes: CACHED_MINUTES_FOR_VERIFICATION);

@@ -4,8 +4,8 @@ using Burgerber.Domain.Entities.Clients;
 
 namespace Burgerber.DataAccess.Interfaces.Clients;
 
-public interface IClientRepository : IRepository<Client, ClientViewModel>, IGetAll<ClientViewModel>
-    , ISearchable<ClientViewModel>
+public interface IClientRepository : IRepository<Client, Client>, IGetAll<Client>
+   
 {
     public Task<Client?> GetByPhoneAsync(string phone);
 }
