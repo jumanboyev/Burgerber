@@ -30,13 +30,13 @@ namespace Burgerber.WepApi.Controllers
         }
 
         [HttpPut("{categoryId}")]
-        [Authorize(Roles = "Admin")]
+       // [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAsync(long categoryId, [FromForm] CategoryUpdateDto dto)
             => Ok(await _service.UpdateAsync(categoryId, dto));
 
 
         [HttpDelete]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteAsync(long categorieId)
             => Ok(await _service.DeleteAsync(categorieId));
 

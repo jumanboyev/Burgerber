@@ -1,13 +1,3 @@
-using Burgerber.DataAccess.Interfaces.Categories;
-using Burgerber.DataAccess.Interfaces.Clients;
-using Burgerber.DataAccess.Repositories.Categories;
-using Burgerber.DataAccess.Repositories.Clients;
-using Burgerber.Service.Interfeces.Auth;
-using Burgerber.Service.Interfeces.Categories;
-using Burgerber.Service.Interfeces.Notifications;
-using Burgerber.Service.Services.Auth;
-using Burgerber.Service.Services.Categories;
-using Burgerber.Service.Services.Notifications;
 using Burgerber.WepApi.Configurations;
 using Burgerber.WepApi.Configurations.Layers;
 
@@ -29,13 +19,15 @@ builder.ConfigureCORSPolicy();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+app.UseCors("AllowAll");
+app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 

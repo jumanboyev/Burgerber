@@ -1,6 +1,7 @@
 ﻿using Burgerber.DataAccess.Utils;
 using Burgerber.Service.Dtos.Products;
 using Burgerber.Service.Interfeces.Products;
+using Burgerber.Service.Validators.Dtos.Products;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,10 @@ namespace Burgerber.WepApi.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateAsync([FromForm] ProductCreateDto dto)
         {
-           return Ok(await _productService.CreateAsync(dto));
+                var createValidator = new ProductCreateValidator();
+                var result = createValidator.Validate(dto);
+                if (result.IsValid) return Ok(await _productService.CreateAsync(dto));
+                else return BadRequest(result.Errors);
         }
 
         [HttpDelete]
