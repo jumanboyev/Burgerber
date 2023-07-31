@@ -4,8 +4,8 @@ namespace Burgerber.WepApi.Configurations
 {
     public static class SwaggerAuthConfiguration
     {
-        public static void ConfigurationAuthAdd(WebApplicationBuilder builder)
-        {
+        public static void ConfigurationAuthAdd(this WebApplicationBuilder builder)
+        {   
             builder.Services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo

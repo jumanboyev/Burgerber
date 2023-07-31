@@ -44,14 +44,14 @@ namespace Burgerber.WepApi.Controllers
         public async Task<IActionResult> GetAllAsync([FromQuery] int page = 1)
             => Ok(await _productService.GetAllAsync(new PaginationParams(page, MaxPageSize)));
 
-        [HttpGet("productId")]
+        [HttpGet("{productId}")]
         [AllowAnonymous]
 
         public async Task<IActionResult> GetByIdAsync(long id)
             => Ok(await _productService.GetByIdAsync(id));
 
 
-        [HttpPut("productId")]
+        [HttpPut("{productId}")]
         [AllowAnonymous]
         public async Task<IActionResult> UpdatedAsync(long id, [FromForm] ProductUpdateDto dto)
         {

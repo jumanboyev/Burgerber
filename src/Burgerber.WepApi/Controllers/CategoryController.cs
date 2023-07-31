@@ -19,7 +19,9 @@ namespace Burgerber.WepApi.Controllers
             _service = service;
         }
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost]
+        //[Authorize(Roles = "Admin")]
+
         public async Task<IActionResult> CreateAsync([FromForm] CategoryCreateDto dto)
         {
             var createValidator = new CategoryCreateValidator();
@@ -30,7 +32,7 @@ namespace Burgerber.WepApi.Controllers
         }
 
         [HttpPut("{categoryId}")]
-       // [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateAsync(long categoryId, [FromForm] CategoryUpdateDto dto)
             => Ok(await _service.UpdateAsync(categoryId, dto));
 

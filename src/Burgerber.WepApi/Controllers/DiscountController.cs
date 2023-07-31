@@ -21,25 +21,24 @@ public class DiscountController : ControllerBase
     }
 
     [HttpGet]
-   // [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetAllAsync([FromQuery] int page = 1)
         => Ok(await _service.GetAllAsync(new PaginationParams(page, maxPageSize)));
 
 
     [HttpGet("{discountId}")]
-    //[Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<IActionResult> GetByIdAsync(long discountId)
     => Ok(await _service.GetByIdAsync(discountId));
 
 
     [HttpGet("count")]
-   // [Authorize(Roles = "Admin")]
+    [AllowAnonymous]
     public async Task<IActionResult> CountAsync()
        => Ok(await _service.CountAsync());
 
 
     [HttpPost]
-    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> CreateAsync([FromForm] DiscountCreateDto dto)
     {
         var createValidator = new DiscountCreateValidator();
@@ -50,7 +49,6 @@ public class DiscountController : ControllerBase
 
 
     [HttpPut("{discountId}")]
-    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> UpdateAsync(long discountId, [FromForm] DiscountUpdateDto dto)
     {
         var updateValidator = new DiscountUpdateValidator();
@@ -61,7 +59,6 @@ public class DiscountController : ControllerBase
 
 
     [HttpDelete("{discountId}")]
-   // [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteAsync(long discountId)
         => Ok(await _service.DeleteAsync(discountId));
 }

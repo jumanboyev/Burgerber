@@ -1,5 +1,6 @@
 using Burgerber.WepApi.Configurations;
 using Burgerber.WepApi.Configurations.Layers;
+using Burgerber.WepApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.ConfigureJwtAuth();
+builder.ConfigurationAuthAdd();
 builder.ConfigureServiceLayer();
 builder.ConfidureDataAccess();
 builder.ConfigureCORSPolicy();
@@ -28,6 +30,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 app.UseHttpsRedirection();
 app.UseCors("AllowAll");
 app.UseStaticFiles();
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 

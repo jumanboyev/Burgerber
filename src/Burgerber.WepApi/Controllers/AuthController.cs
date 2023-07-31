@@ -2,6 +2,7 @@
 using Burgerber.Service.Interfeces.Auth;
 using Burgerber.Service.Validators.Dtos;
 using Burgerber.Service.Validators.Dtos.Auth;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Burgerber.WepApi.Controllers;
@@ -17,7 +18,8 @@ public class AuthController : ControllerBase
         this._authService = authService;
     }
 
-    [HttpPost("register")]
+    [HttpPost("register"),AllowAnonymous]
+    
     public async Task<IActionResult> RegisterAsync([FromForm] RegisterDto registerDto)
     {
         var validator = new RegisterValidator();
@@ -31,6 +33,7 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register/send-code")]
+    [AllowAnonymous]
     public async Task<IActionResult> SendCodeRegisterAsync(string phone)
     {
         var result = PhoneNumberValidator.isValid(phone);
@@ -41,6 +44,8 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("register/verify")]
+    [AllowAnonymous]
+
     public async Task<IActionResult> VerifyRegisterAsync([FromBody] VerifyRegisterDto verifyRegisterDto)
     {
         var serviceResult = await _authService.VerifyRegisterAsync(verifyRegisterDto.PhoneNumber, verifyRegisterDto.Code);
@@ -48,6 +53,8 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
+
     public async Task<IActionResult> LoginAsync([FromBody] LoginDto loginDto)
     {
         var validator = new LoginValidator();

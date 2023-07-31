@@ -32,8 +32,8 @@ public class TokenService : ITokenService
 
         int expiresHours = 24;
         var token = new JwtSecurityToken(
-            issuer: _config["Issure"],
-            audience: _config["Audience"],
+            issuer: "https://burgerber",
+            audience: "Burgerber",
             claims: identityclaims,
             expires: TimeHelper.GetDateTime().AddHours(expiresHours),
             signingCredentials: keyCredentials);
